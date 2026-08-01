@@ -30,6 +30,14 @@ portal、厂商认证 API 和 Passpoint/OpenRoaming 三类行为，而不是猜�
 计划，显式增加 `--execute` 才发包。由于没有处于目标 WLAN，尚未把“静态确认的请求
 格式”提升为“现场放行成功”；endpoint/token 必须由当前热点合法会话提供。
 
+## macOS 核心 PoC
+
+[`docs/macos-core-design.md`](docs/macos-core-design.md) 给出了最终连接状态机与时序图、
+CoreWLAN AP 列表获取方式、会用到的 API 清单、权限/安全边界和现场验收计划。
+[`macos/JWiFiCore.swift`](macos/JWiFiCore.swift) 提供扫描、当前网络、连接和断开的 JSON
+接口；[`poc/macos_jwifi.py`](poc/macos_jwifi.py) 将它与 captive probe 和既有 CloudAP
+认证串成一个默认不发认证请求的端到端编排器。
+
 ## 对 APK 做可复现扫描
 
 脚本只使用 Python 标准库，不修改 APK：
